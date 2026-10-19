@@ -1,0 +1,167 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens — Pontes
+ * Paleta de empatia e confiança: azul-marinho (navy) + teal, com âmbar pontual para urgência.
+ * Todas as combinações "ink sobre surface" e "on-* sobre *" atendem WCAG 2.1 AA (≥ 4.5:1).
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala navy */
+  --color-navy-50: #f0f4f8;
+  --color-navy-100: #d9e2ec;
+  --color-navy-200: #bcccdc;
+  --color-navy-300: #9fb3c8;
+  --color-navy-400: #829ab1;
+  --color-navy-500: #627d98;
+  --color-navy-600: #486581;
+  --color-navy-700: #334e68;
+  --color-navy-800: #243b53;
+  --color-navy-900: #102a43;
+  --color-navy-950: #0a1c2e;
+
+  /* Escala teal */
+  --color-teal-50: #effcf9;
+  --color-teal-100: #c8f2ea;
+  --color-teal-200: #95e3d5;
+  --color-teal-300: #5ccbbb;
+  --color-teal-400: #2fae9f;
+  --color-teal-500: #179286;
+  --color-teal-600: #0f766e;
+  --color-teal-700: #115e59;
+  --color-teal-800: #134e4a;
+  --color-teal-900: #123f3c;
+
+  /* Escala âmbar (urgência) */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+
+  /* Tons quentes de apoio (fundo) */
+  --color-sand-50: #fdfbf7;
+  --color-sand-100: #f8f3ea;
+  --color-sand-200: #efe6d6;
+
+  /* ---- Tokens semânticos ---- */
+  --color-surface: var(--color-sand-50);          /* fundo da página */
+  --color-surface-muted: var(--color-sand-100);   /* seções alternadas */
+  --color-surface-raised: #ffffff;                /* cards, painéis */
+  --color-surface-inverse: var(--color-navy-900); /* seções escuras */
+
+  --color-ink: var(--color-navy-900);             /* texto principal */
+  --color-ink-muted: var(--color-navy-600);       /* texto secundário (≥ 5.9:1 em surface) */
+  --color-ink-inverse: #ffffff;                   /* texto sobre surface-inverse */
+  --color-ink-inverse-muted: var(--color-navy-100);
+
+  --color-primary: var(--color-teal-600);         /* ações primárias (branco sobre: 5.4:1) */
+  --color-primary-hover: var(--color-teal-700);
+  --color-primary-soft: var(--color-teal-50);
+  --color-on-primary: #ffffff;
+
+  --color-urgent: var(--color-amber-400);         /* destaque de urgência (navy sobre: 9:1) */
+  --color-urgent-hover: var(--color-amber-300);
+  --color-urgent-soft: var(--color-amber-100);
+  --color-urgent-ink: var(--color-amber-800);     /* texto de urgência sobre fundo claro (≥ 7:1) */
+  --color-on-urgent: var(--color-navy-950);
+
+  --color-border: var(--color-sand-200);
+  --color-border-strong: var(--color-navy-300);
+
+  --color-focus: var(--color-navy-900);           /* anel de foco sobre fundos claros */
+  --color-focus-inverse: var(--color-amber-300);  /* anel de foco sobre fundos escuros */
+
+  --color-success: #15803d;
+  --color-danger: #b91c1c;
+
+  /* Raios e sombras */
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(16 42 67 / 0.06), 0 8px 24px -12px rgb(16 42 67 / 0.18);
+  --shadow-raised: 0 2px 4px rgb(16 42 67 / 0.06), 0 18px 40px -16px rgb(16 42 67 / 0.28);
+
+  /* Alvo mínimo de toque (WCAG 2.5.5 / briefing: 48px) */
+  --spacing-touch: 3rem;
+}
+
+/* Anel de foco consistente e visível (WCAG 2.4.7) */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+}
+
+@utility focus-ring-inverse {
+  &:focus-visible {
+    outline: 3px solid var(--color-focus-inverse);
+    outline-offset: 3px;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    /* compensa o header fixo ao navegar por âncoras */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-balance;
+  }
+
+  ::selection {
+    background: var(--color-teal-200);
+    color: var(--color-navy-950);
+  }
+
+  /* Foco padrão para qualquer elemento interativo sem estilo próprio */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Texto apenas para leitores de tela que se torna visível ao receber foco (skip link) */
+@utility sr-only-focusable {
+  &:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

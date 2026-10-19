@@ -1,0 +1,268 @@
+import type { HelpRequest } from '../types'
+
+/**
+ * Dados de demonstração. Contatos são fictícios.
+ * Em produção, estes registros viriam da API municipal.
+ */
+export const SEED_REQUESTS: HelpRequest[] = [
+  {
+    id: 'cozinha-solidaria-cajuru',
+    title: 'Cozinha solidária precisa de voluntários para o almoço',
+    summary:
+      'Preparamos 300 marmitas por dia e precisamos de mãos extras na cozinha e na distribuição.',
+    description:
+      'A Cozinha Solidária do Cajuru serve almoço gratuito de segunda a sábado para famílias em situação de vulnerabilidade. Com o aumento da procura, precisamos de voluntários para o preparo dos alimentos (das 8h às 11h) e para a distribuição das marmitas (das 11h às 13h). Não é necessária experiência — oferecemos um treinamento rápido sobre higiene e manipulação de alimentos no primeiro dia.',
+    category: 'alimentacao',
+    urgency: 'alta',
+    organization: 'Associação de Moradores do Cajuru',
+    neighborhood: 'Cajuru',
+    address: 'R. Pastor Carlos Frank, 1200 — Cajuru',
+    location: { lat: -25.4544, lng: -49.2203 },
+    createdAt: '2026-10-14T09:00:00-03:00',
+    neededBy: '2026-10-31T23:59:00-03:00',
+    volunteersNeeded: 12,
+    contact: {
+      whatsapp: '5541999990001',
+      email: 'cozinha.cajuru@exemplo.org.br',
+      instagram: 'https://www.instagram.com/exemplo.cozinhacajuru',
+    },
+    needs: ['Preparo de alimentos', 'Distribuição de marmitas', 'Doação de descartáveis'],
+  },
+  {
+    id: 'abrigo-caes-santa-felicidade',
+    title: 'Abrigo de cães busca lares temporários e passeadores',
+    summary:
+      'Mais de 80 cães resgatados aguardam adoção. Precisamos de passeadores aos fins de semana e lares temporários.',
+    description:
+      'O Abrigo Patas Unidas resgata cães em situação de abandono e os prepara para adoção responsável. Neste momento estamos com lotação máxima e buscamos: voluntários para passear com os cães aos sábados e domingos, famílias que possam oferecer lar temporário por até 60 dias e doações de ração para filhotes. Todos os voluntários passam por uma conversa de acolhimento antes de começar.',
+    category: 'animais',
+    urgency: 'alta',
+    organization: 'Abrigo Patas Unidas',
+    neighborhood: 'Santa Felicidade',
+    address: 'Via Vêneto, 800 — Santa Felicidade',
+    location: { lat: -25.4027, lng: -49.3311 },
+    createdAt: '2026-10-12T14:30:00-03:00',
+    volunteersNeeded: 20,
+    contact: {
+      whatsapp: '5541999990002',
+      email: 'contato@patasunidas.exemplo.org.br',
+      instagram: 'https://www.instagram.com/exemplo.patasunidas',
+      facebook: 'https://www.facebook.com/exemplo.patasunidas',
+    },
+    needs: ['Passeios aos fins de semana', 'Lar temporário', 'Ração para filhotes'],
+  },
+  {
+    id: 'leitura-idosos-centro',
+    title: 'Companhia e leitura para idosos em casa de repouso',
+    summary:
+      'Procuramos voluntários para visitas semanais de leitura, conversa e jogos com residentes.',
+    description:
+      'O Lar São Vicente acolhe 45 idosos, muitos sem visitas regulares de familiares. Buscamos voluntários que possam dedicar uma tarde por semana para ler em voz alta, conversar, jogar dominó ou simplesmente fazer companhia. A solidão é um dos maiores desafios dos nossos residentes, e sua presença faz uma diferença enorme.',
+    category: 'idosos',
+    urgency: 'media',
+    organization: 'Lar São Vicente',
+    neighborhood: 'Centro',
+    address: 'R. Marechal Deodoro, 450 — Centro',
+    location: { lat: -25.4296, lng: -49.2713 },
+    createdAt: '2026-10-08T10:00:00-03:00',
+    volunteersNeeded: 8,
+    contact: {
+      email: 'voluntariado@larsaovicente.exemplo.org.br',
+      website: 'https://larsaovicente.exemplo.org.br',
+      whatsapp: '5541999990003',
+    },
+    needs: ['Leitura em voz alta', 'Jogos de mesa', 'Oficinas de memória'],
+  },
+  {
+    id: 'mutirao-plantio-cic',
+    title: 'Mutirão de plantio de mudas nativas no Parque',
+    summary: 'Vamos plantar 500 mudas nativas às margens do rio. Traga luvas e disposição!',
+    description:
+      'Em parceria com a Secretaria do Meio Ambiente, o Coletivo Verde CIC organiza um mutirão de recuperação de mata ciliar. As mudas, ferramentas e o lanche são fornecidos. Recomendamos roupas confortáveis, protetor solar, garrafa de água e calçado fechado. Atividade ideal para famílias e grupos de empresas.',
+    category: 'meio-ambiente',
+    urgency: 'media',
+    organization: 'Coletivo Verde CIC',
+    neighborhood: 'Cidade Industrial',
+    address: 'Parque Cambuí — Cidade Industrial',
+    location: { lat: -25.4904, lng: -49.3373 },
+    createdAt: '2026-10-10T08:00:00-03:00',
+    neededBy: '2026-11-08T12:00:00-03:00',
+    volunteersNeeded: 60,
+    contact: {
+      whatsapp: '5541999990004',
+      instagram: 'https://www.instagram.com/exemplo.coletivoverde',
+    },
+    needs: ['Plantio', 'Transporte de mudas', 'Registro fotográfico'],
+  },
+  {
+    id: 'reforco-escolar-sitio-cercado',
+    title: 'Reforço escolar de matemática para o ensino fundamental',
+    summary:
+      'Crianças do 6º ao 9º ano precisam de apoio em matemática duas vezes por semana, no contraturno.',
+    description:
+      'O Projeto Saber Mais oferece reforço escolar gratuito para crianças da comunidade. Procuramos voluntários com afinidade com matemática para acompanhar pequenos grupos de 4 a 5 alunos às terças e quintas, das 14h às 16h. Fornecemos material didático e um roteiro de atividades.',
+    category: 'educacao',
+    urgency: 'media',
+    organization: 'Projeto Saber Mais',
+    neighborhood: 'Sítio Cercado',
+    address: 'R. Izaac Ferreira da Cruz, 3000 — Sítio Cercado',
+    location: { lat: -25.542, lng: -49.269 },
+    createdAt: '2026-10-05T16:00:00-03:00',
+    volunteersNeeded: 6,
+    contact: {
+      email: 'sabermais@exemplo.org.br',
+      whatsapp: '5541999990005',
+      facebook: 'https://www.facebook.com/exemplo.sabermais',
+    },
+    needs: ['Aulas de matemática', 'Correção de exercícios'],
+  },
+  {
+    id: 'telhado-familia-tatuquara',
+    title: 'Reforma emergencial de telhado após temporal',
+    summary:
+      'Família com três crianças teve o telhado destruído pelo vento. Precisamos de mão de obra e telhas.',
+    description:
+      'Na última tempestade, a casa da família Oliveira perdeu boa parte do telhado. Eles estão abrigados temporariamente com vizinhos. Buscamos voluntários com experiência em construção civil para um mutirão no próximo fim de semana, além de doações de telhas de fibrocimento (cerca de 40 unidades) e lona plástica.',
+    category: 'moradia',
+    urgency: 'alta',
+    organization: 'Família Oliveira (via Associação Tatuquara Unida)',
+    neighborhood: 'Tatuquara',
+    address: 'R. Pedro Gusso, 5500 — Tatuquara',
+    location: { lat: -25.564, lng: -49.329 },
+    createdAt: '2026-10-17T19:00:00-03:00',
+    neededBy: '2026-10-26T18:00:00-03:00',
+    volunteersNeeded: 5,
+    contact: {
+      whatsapp: '5541999990006',
+      email: 'tatuquaraunida@exemplo.org.br',
+    },
+    needs: ['Pedreiro ou telhadista', 'Telhas de fibrocimento', 'Lona plástica'],
+  },
+  {
+    id: 'campanha-agasalho-boqueirao',
+    title: 'Triagem de doações da Campanha do Agasalho',
+    summary: 'Recebemos mais de 4 mil peças e precisamos de ajuda para separar e organizar.',
+    description:
+      'O galpão da Paróquia do Boqueirão recebeu uma grande quantidade de roupas e cobertores. Precisamos de voluntários para triagem, dobra e separação por tamanho, para que as peças cheguem rapidamente às famílias cadastradas. Turnos flexíveis de 3 horas, de segunda a sábado.',
+    category: 'moradia',
+    urgency: 'baixa',
+    organization: 'Pastoral Social do Boqueirão',
+    neighborhood: 'Boqueirão',
+    address: 'R. Waldemar Kost, 1100 — Boqueirão',
+    location: { lat: -25.505, lng: -49.2378 },
+    createdAt: '2026-09-28T09:00:00-03:00',
+    volunteersNeeded: 15,
+    contact: {
+      whatsapp: '5541999990007',
+      facebook: 'https://www.facebook.com/exemplo.pastoralboqueirao',
+    },
+    needs: ['Triagem de roupas', 'Organização do estoque'],
+  },
+  {
+    id: 'acompanhamento-consultas-agua-verde',
+    title: 'Acompanhantes para idosos em consultas médicas',
+    summary:
+      'Idosos que moram sozinhos precisam de companhia para ir a consultas e exames na rede pública.',
+    description:
+      'A Rede Cuidar conecta idosos que moram sozinhos a voluntários que os acompanham em consultas, exames e retirada de medicamentos. O voluntário ajuda no deslocamento (a pé, de ônibus ou com carro próprio), na espera e na compreensão das orientações médicas. Os horários são combinados com antecedência.',
+    category: 'saude',
+    urgency: 'media',
+    organization: 'Rede Cuidar',
+    neighborhood: 'Água Verde',
+    address: 'Av. República Argentina, 1500 — Água Verde',
+    location: { lat: -25.4519, lng: -49.2822 },
+    createdAt: '2026-10-11T11:00:00-03:00',
+    volunteersNeeded: 10,
+    contact: {
+      email: 'redecuidar@exemplo.org.br',
+      website: 'https://redecuidar.exemplo.org.br',
+    },
+    needs: ['Acompanhamento em consultas', 'Carona solidária'],
+  },
+  {
+    id: 'brinquedoteca-bairro-alto',
+    title: 'Monitores para brinquedoteca comunitária',
+    summary:
+      'Nossa brinquedoteca atende 60 crianças por semana e precisa de monitores para brincadeiras e contação de histórias.',
+    description:
+      'A Brinquedoteca Arco-Íris funciona no salão comunitário e oferece um espaço seguro de brincar para crianças de 3 a 10 anos enquanto os pais trabalham. Procuramos monitores para conduzir brincadeiras, contação de histórias e oficinas de arte. Todos os voluntários precisam apresentar certidão de antecedentes.',
+    category: 'criancas',
+    urgency: 'baixa',
+    organization: 'Brinquedoteca Arco-Íris',
+    neighborhood: 'Bairro Alto',
+    address: 'R. Jovino do Rosário, 1700 — Bairro Alto',
+    location: { lat: -25.4093, lng: -49.2049 },
+    createdAt: '2026-10-02T15:00:00-03:00',
+    volunteersNeeded: 4,
+    contact: {
+      whatsapp: '5541999990009',
+      instagram: 'https://www.instagram.com/exemplo.arcoiris',
+      email: 'arcoiris@exemplo.org.br',
+    },
+    needs: ['Contação de histórias', 'Oficinas de arte'],
+  },
+  {
+    id: 'castracao-portao',
+    title: 'Mutirão de castração: apoio na recepção dos tutores',
+    summary: 'Precisamos de voluntários para recepção, cadastro e orientação pós-operatória.',
+    description:
+      'O mutirão gratuito de castração de cães e gatos acontece no próximo sábado. Os veterinários já estão garantidos — faltam voluntários para receber os tutores, organizar a fila, preencher fichas e orientar sobre os cuidados pós-cirúrgicos. Treinamento rápido no início do dia.',
+    category: 'animais',
+    urgency: 'media',
+    organization: 'ONG Bicho Feliz',
+    neighborhood: 'Portão',
+    address: 'Av. Presidente Kennedy, 2600 — Portão',
+    location: { lat: -25.4746, lng: -49.295 },
+    createdAt: '2026-10-15T12:00:00-03:00',
+    neededBy: '2026-10-25T08:00:00-03:00',
+    volunteersNeeded: 8,
+    contact: {
+      whatsapp: '5541999990010',
+      instagram: 'https://www.instagram.com/exemplo.bichofeliz',
+    },
+    needs: ['Recepção', 'Cadastro de tutores'],
+  },
+  {
+    id: 'horta-comunitaria-boa-vista',
+    title: 'Horta comunitária precisa de cuidadores',
+    summary: 'Ajude a manter a horta que abastece a creche do bairro com verduras orgânicas.',
+    description:
+      'A horta comunitária da Boa Vista produz verduras e temperos para a creche municipal e para famílias do entorno. Precisamos de voluntários para rega, capina e colheita nas manhãs de terça e sábado. Também aceitamos doações de adubo orgânico e mudas.',
+    category: 'meio-ambiente',
+    urgency: 'baixa',
+    organization: 'Horta Viva Boa Vista',
+    neighborhood: 'Boa Vista',
+    address: 'R. Paulo Setúbal, 900 — Boa Vista',
+    location: { lat: -25.3889, lng: -49.2468 },
+    createdAt: '2026-09-30T07:30:00-03:00',
+    volunteersNeeded: 6,
+    contact: {
+      whatsapp: '5541999990011',
+      email: 'hortaviva@exemplo.org.br',
+    },
+    needs: ['Rega e capina', 'Adubo orgânico'],
+  },
+  {
+    id: 'doacao-sangue-reboucas',
+    title: 'Campanha de doação de sangue: divulgação e acolhimento',
+    summary:
+      'Estoques de sangue estão baixos. Precisamos de voluntários para divulgar e acolher doadores.',
+    description:
+      'Os estoques do hemocentro estão abaixo do nível de segurança. Além de doadores, precisamos de voluntários para panfletagem nos terminais de ônibus, acolhimento de doadores de primeira viagem e organização do lanche pós-doação. Se você puder doar, melhor ainda!',
+    category: 'saude',
+    urgency: 'alta',
+    organization: 'Hemocentro Regional (Voluntariado)',
+    neighborhood: 'Rebouças',
+    address: 'Tv. João Prosdócimo, 145 — Rebouças',
+    location: { lat: -25.4436, lng: -49.2598 },
+    createdAt: '2026-10-16T08:00:00-03:00',
+    neededBy: '2026-10-30T18:00:00-03:00',
+    volunteersNeeded: 25,
+    contact: {
+      email: 'voluntarios.hemo@exemplo.gov.br',
+      website: 'https://hemocentro.exemplo.gov.br',
+      instagram: 'https://www.instagram.com/exemplo.hemocentro',
+    },
+    needs: ['Doação de sangue', 'Divulgação', 'Acolhimento'],
+  },
+]
