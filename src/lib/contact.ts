@@ -7,7 +7,7 @@ export function onlyDigits(value: string): string {
 
 /**
  * Normaliza um telefone brasileiro para o formato aceito por wa.me (DDI + DDD + número).
- * Aceita entradas como "(41) 99999-0001", "41999990001" ou "+55 41 99999-0001".
+ * Aceita entradas como "(24) 99999-0001", "24999990001" ou "+55 24 99999-0001".
  * Retorna null se o número for inválido.
  */
 export function normalizeWhatsapp(value: string): string | null {
@@ -18,7 +18,7 @@ export function normalizeWhatsapp(value: string): string | null {
   return digits
 }
 
-/** Formata para exibição: +55 (41) 99999-0001 */
+/** Formata para exibição: +55 (24) 99999-0001 */
 export function formatPhone(digits: string): string {
   const d = onlyDigits(digits)
   const m = d.match(/^(55)?(\d{2})(\d{4,5})(\d{4})$/)

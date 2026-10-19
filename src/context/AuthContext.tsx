@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react'
+import { hasAccount, loadUsers, USERS_KEY } from '../lib/accounts'
 import { readJSON, removeKey, writeJSON } from '../lib/storage'
 import type { UserProfile } from '../types'
 
@@ -6,7 +7,6 @@ import type { UserProfile } from '../types'
  * Autenticação simulada para o MVP (sem backend): perfis ficam no localStorage.
  * A interface foi pensada para ser trocada por uma API real sem mudar os consumidores.
  */
-const USERS_KEY = 'pontes:users'
 const SESSION_KEY = 'pontes:session'
 
 interface AuthContextValue {
@@ -18,13 +18,11 @@ interface AuthContextValue {
   logout: () => void
   /** Atualiza o perfil logado (ex.: adicionar requestIds ao beneficiário) */
   updateUser: (patch: Partial<UserProfile>) => void
+  /** Já existe um cadastro com este e-mail neste navegador? (os formulários de cadastro bloqueiam duplicatas) */
+  hasAccount: (email: string) => boolean
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
-
-function loadUsers(): UserProfile[] {
-  return readJSON<UserProfile[]>(USERS_KEY, [])
-}
 
 function saveUser(profile: UserProfile) {
   const users = loadUsers().filter((u) => u.email.toLowerCase() !== profile.email.toLowerCase())
@@ -67,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const value = useMemo(
-    () => ({ user, register, login, logout, updateUser }),
+    () => ({ user, register, login, logout, updateUser, hasAccount }),
     [user, register, login, logout, updateUser],
   )
 

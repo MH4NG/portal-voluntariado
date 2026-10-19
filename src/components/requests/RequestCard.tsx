@@ -25,7 +25,7 @@ export function RequestCard({ request, headingLevel: Heading = 'h3', className }
       className={cn(
         'group relative flex h-full flex-col overflow-hidden rounded-card bg-surface-raised shadow-card',
         'ring-1 ring-border transition-shadow duration-200 hover:shadow-raised',
-        'focus-within:ring-2 focus-within:ring-focus',
+        'focus-within:ring-2 focus-within:ring-focus focus-within:outline-3 focus-within:outline-offset-3 focus-within:outline-focus',
         request.urgency === 'alta' && 'ring-2 ring-urgent',
         className,
       )}
@@ -63,6 +63,8 @@ export function RequestCard({ request, headingLevel: Heading = 'h3', className }
             className="rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
           >
             {request.title}
+            {/* O texto visível "Saber mais e ajudar" também faz parte do nome do link (comando de voz) */}
+            <span className="sr-only"> — Saber mais e ajudar</span>
           </Link>
         </Heading>
         <p className="line-clamp-3 text-ink-muted">{request.summary}</p>
@@ -82,7 +84,7 @@ export function RequestCard({ request, headingLevel: Heading = 'h3', className }
               <dt>
                 <span className="sr-only">Prazo</span>
                 <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" className="size-4">
-                  <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm.75 4a.75.75 0 0 0-1.5 0v4c0 .2.08.39.22.53l2.5 2.5a.75.75 0 1 0 1.06-1.06l-2.28-2.28V6Z" />
+                  <path fillRule="evenodd" clipRule="evenodd" d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm.75 4a.75.75 0 0 0-1.5 0v4c0 .2.08.39.22.53l2.5 2.5a.75.75 0 1 0 1.06-1.06l-2.28-2.28V6Z" />
                 </svg>
               </dt>
               <dd className={cn(deadlineDays <= 7 && 'font-semibold text-urgent-ink')}>
@@ -98,7 +100,9 @@ export function RequestCard({ request, headingLevel: Heading = 'h3', className }
                   <path d="M7 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm7 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1 16c0-3 2.7-5 6-5s6 2 6 5v1H1v-1Zm13.5 1H19v-.5c0-2.4-1.9-4.2-4.6-4.5 1 .9 1.6 2.1 1.6 3.5V17h-1.5Z" />
                 </svg>
               </dt>
-              <dd>{request.volunteersNeeded} vagas</dd>
+              <dd>
+                {request.volunteersNeeded} {request.volunteersNeeded === 1 ? 'vaga' : 'vagas'}
+              </dd>
             </div>
           )}
         </dl>

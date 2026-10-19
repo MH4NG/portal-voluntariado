@@ -17,7 +17,7 @@ export interface LatLng {
 
 /** Canais de contato que o criador da ação escolhe divulgar. Todos opcionais. */
 export interface ContactChannels {
-  /** Somente dígitos, com DDI + DDD. Ex.: "5541999990001" */
+  /** Somente dígitos, com DDI + DDD. Ex.: "5524999990001" */
   whatsapp?: string
   email?: string
   /** URL completa do perfil */

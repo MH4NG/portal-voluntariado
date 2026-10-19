@@ -8,11 +8,14 @@ export function readJSON<T>(key: string, fallback: T): T {
   }
 }
 
-export function writeJSON(key: string, value: unknown): void {
+/** Grava o valor; devolve false se não foi possível (quota excedida ou storage indisponível). */
+export function writeJSON(key: string, value: unknown): boolean {
   try {
     window.localStorage.setItem(key, JSON.stringify(value))
+    return true
   } catch {
-    /* quota excedida ou storage indisponível — segue apenas em memória */
+    /* segue apenas em memória */
+    return false
   }
 }
 
