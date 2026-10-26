@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  # Todas as branches, não só a main: o objetivo é pegar a quebra antes de
+  # ela chegar na main, e uma branch sem PR aberto não seria verificada.
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  verificar:
+    name: lint · build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # npm ci em vez de npm install: instala exatamente o que está no
+      # package-lock.json, então o CI não "conserta" o build por acidente
+      # com uma versão diferente de dependência.
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # tsc -b + vite build: a checagem de tipos roda junto com o build.
+      - name: Build de produção
+        run: npm run build

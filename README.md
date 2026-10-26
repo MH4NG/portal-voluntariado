@@ -8,6 +8,9 @@ sociais. Não existe chat interno.
 Este repositório é o **MVP de front-end**: não há back-end. Os dados de exemplo e as contas
 ficam no navegador.
 
+🔗 **Ao vivo:** https://portal-voluntariado-h4-ng.vercel.app
+📦 **Repositório:** https://github.com/MH4NG/portal-voluntariado
+
 ## Funcionalidades
 
 | Rota | O que faz |
@@ -48,6 +51,29 @@ npm run build     # tsc -b + vite build (saída em dist/)
 npm run preview   # serve o build localmente
 npm run lint      # oxlint
 ```
+
+O workflow em `.github/workflows/ci.yml` roda `lint → build` (o build inclui a checagem de tipos
+do `tsc -b`) a cada push e pull request.
+
+## Deploy
+
+Publicado no Vercel (projeto `portal-voluntariado`, escopo `h4-ng`) com o repositório conectado
+pela integração Git. O deploy é automático:
+
+| Evento | Resultado |
+| --- | --- |
+| push na `main` | deploy de **produção** |
+| push em qualquer outra branch | **preview** com URL própria |
+
+A Vercel detecta o Vite sozinha (build `npm run build`, saída `dist/`). O `vercel.json` na raiz
+reescreve todas as rotas para `index.html`; sem isso, as rotas do React Router (`/acoes`,
+`/acoes/:id`, `/cadastro`…) respondem 404 quando acessadas diretamente, em vez de navegando pelo app.
+
+As variáveis `VITE_GOOGLE_MAPS_API_KEY` e `VITE_GOOGLE_MAPS_MAP_ID` são opcionais e ficam em
+*Settings → Environment Variables* do projeto. Por serem `VITE_*`, entram no bundle no momento do
+build: depois de alterá-las, é preciso um novo deploy. Sem elas, o portal publicado usa o fallback
+descrito em [Google Maps](#google-maps). Se configurar a chave, inclua o domínio
+`https://portal-voluntariado-h4-ng.vercel.app/*` na restrição por *HTTP referrer*.
 
 ## Google Maps
 
