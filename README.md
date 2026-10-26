@@ -8,7 +8,7 @@ sociais. Não existe chat interno.
 Este repositório é o **MVP de front-end**: não há back-end. Os dados de exemplo e as contas
 ficam no navegador.
 
-🔗 **Ao vivo:** https://portal-voluntariado-h4-ng.vercel.app
+🔗 **Ao vivo:** https://pontes-petropolis.vercel.app
 📦 **Repositório:** https://github.com/MH4NG/portal-voluntariado
 
 ## Funcionalidades
@@ -57,7 +57,7 @@ do `tsc -b`) a cada push e pull request.
 
 ## Deploy
 
-Publicado no Vercel (projeto `portal-voluntariado`, escopo `h4-ng`) com o repositório conectado
+Publicado no Vercel (projeto `pontes-petropolis`, escopo `h4-ng`) com o repositório conectado
 pela integração Git. O deploy é automático:
 
 | Evento | Resultado |
@@ -73,7 +73,7 @@ As variáveis `VITE_GOOGLE_MAPS_API_KEY` e `VITE_GOOGLE_MAPS_MAP_ID` são opcion
 *Settings → Environment Variables* do projeto. Por serem `VITE_*`, entram no bundle no momento do
 build: depois de alterá-las, é preciso um novo deploy. Sem elas, o portal publicado usa o fallback
 descrito em [Google Maps](#google-maps). Se configurar a chave, inclua o domínio
-`https://portal-voluntariado-h4-ng.vercel.app/*` na restrição por *HTTP referrer*.
+`https://pontes-petropolis.vercel.app/*` na restrição por *HTTP referrer*.
 
 ## Google Maps
 
